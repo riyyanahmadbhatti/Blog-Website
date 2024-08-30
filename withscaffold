@@ -1,0 +1,212 @@
+if help needed till only a specific user doing edit to his own posts watch the video till more associations chapter 
+https://www.youtube.com/watch?v=fmyvWz5TUWg&t=7714s
+
+first creating a rails app using 
+rails new blogs
+
+
+then creating a site main using line 
+rails g controller site main
+
+also done manually 
+first create controller only
+rails g controller site 
+create an html.erb file and set it into the site folder 
+add its function in the controller folder inside the file 
+def main
+end
+
+then setting that site as root 
+root 'site#main'
+
+create header file that is in every site by setting it into the application file 
+add this line above the yield line 
+<%=render 'site/header'%>
+
+
+create the header file as well using bootstrap add the links to the application html file
+
+
+create a scaffold
+rails g scaffold friends firstname:string lastname:string phone:string twitter:string
+edit this for name text author
+
+after creating the scaffold 
+rails db:migrate
+
+do the editing of html and stuff
+
+after that implement devise and the html stuff of it 
+for destroying account add this method
+data: { turbo_method: :delete }
+
+
+after that do associations
+
+
+
+
+to edit a database we do a migration and the we implement the migration implement this line
+
+rails g migration add_blogid_to_blogs blogid:integer:index
+rails db:migrate
+
+
+after that add a field of the blogid to form page of blog hide it with the current user id 
+
+after that go into the controllers of blog and add blogid to the params to ensure proper input of data into the db
+
+
+add user id to blogs 
+add user id to each blog to ensure which is which
+
+to make sure that other people can see but only the author can edit or destroy it watch the tutorial video from 2:26 
+
+
+
+to add attachments use gem active storage
+install and migrate it on the console 
+
+edit the blog model and add this line 
+has_one_attached :image
+
+after add image into the params of the blog in the controller 
+
+after that update your form for attaching an image 
+
+after that edit blog html the jumbotron one
+
+now go attach your image on your blog with ease 
+
+
+
+
+For multiple images upload change the blog model to 
+has_many_attached :images
+
+change the params of image to this in the controller
+images: []
+
+after that update the form for multiple image upload
+
+after that update the jumbotron blog.html to show the multiple images
+
+in the case of updating images  we have apply a condition in the form 
+<% blog.images.each do |image| %>
+      <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
+    <% end %>    
+
+and to make show the image is being showed while update we have to show the image in the form as well 
+
+to add the ability to comments in the page make a comments model 
+rails generate model Comment content:text user:references{polymorphic}:index
+
+update the blog and user and comment model for comments
+
+update the routes for controller 
+
+update the comment controller
+
+now make a migration of addcommentabletocomments and migrate it 
+
+after that adjust the view form blog form to show and add the option to add commments 
+
+
+for delete option of the image use purge 
+
+
+
+you can add callbacks to ensure that user does not edit delete or destroy someone elses post/blog
+
+
+
+
+to add a feature we firstly generate a model
+then run it's migration
+then set up it's associations
+edit the views for the option to see statuses 
+update the the controller you want to link the feature with
+edit the routes 
+create a seperate contoller for the feature as well add the functionality as well 
+and then again update the routes to reflect the controller 
+
+
+
+
+to add feature to the scaffold
+to edit a database we do a migration and the we implement the migration implement this line
+rails g migration add_blogid_to_blogs blogid:integer:index
+rails db:migrate
+after that add a field of the blogid to form page of blog hide it with the current user id 
+after that go into the controllers of blog and add blogid to the params to ensure proper input of data into the db
+add user id to blogs 
+add user id to each blog to ensure which is which
+to make sure that other people can see but only the author can edit or destroy it watch the tutorial video from 2:26 
+
+
+
+to add a timer 
+we use jobs 
+firstly use gem sidekiq
+edit application.rb file in config
+create new job
+edit job and update controller 
+
+story = Story.find_by(id: story_id)
+    story.destroy if story.present?
+    
+#DeleteStoryJob.set(wait: 1.minute).perform_later(@story.id)
+and also in another terminal tab run bundle exec sidekiq
+
+
+
+to add a feature thigs done most of the time 
+
+create a model
+migrate it 
+set associations mostly which are used as references while creating the model
+set the methods of the feature in the controller 
+then edit the view options so that we could make use of the new feature 
+
+
+for authorization we use pundit
+add a admin 
+set pundit in application controller 
+after that authorize task inn the controller using admin authoriza admin
+after that update the views as well 
+
+
+
+turbo rails helps ensuring the seamless ness of the website 
+first add the gem and install hotrails 
+then add the make the partials of the specific task render them in the main view where they are used  
+then edit the controller of the tasks according to the turbo rails requirement 
+
+
+
+
+ for mailing 
+we first of make a mailer of UserMail 
+in which you define the from whom the mail is and links
+then create view pages of user_mail 
+after that create welcome user html page
+also add the gem letter opener to open letter as a person signs up in the website
+
+
+for addition of chat box 
+generate models of message and conversation
+set up asscoiations and controllers 
+after that add userid to messages 
+set the html pages for messages and conversation
+add turbo rails as well 
+
+sql atticate function min max 
+
+access modifers
+
+encapsulation 
+pagination
+api with json 
+
+test case 
+\
